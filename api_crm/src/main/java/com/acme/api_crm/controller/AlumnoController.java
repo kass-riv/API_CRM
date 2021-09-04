@@ -23,12 +23,12 @@ import org.springframework.http.*;
 
 
 public class AlumnoController {
-    private Map<String, Alumno> Alumnos;
+    private Map<String, Alumno> alumnos;
 
 
     public AlumnoController(){
 
-        Alumnos = new HashMap<String, Alumno>();
+        alumnos = new HashMap<String, Alumno>();
 
         Alumno p = new Alumno();
         p.setDni("71942525");
@@ -42,7 +42,7 @@ public class AlumnoController {
 
         String id = UUID.randomUUID().toString();
         p.setId(id);
-        Alumnos.put(id,p);
+        alumnos.put(id,p);
 
 
     }
@@ -51,7 +51,7 @@ public class AlumnoController {
     public ResponseEntity <Map<String, Alumno>> all(){
 
         return new ResponseEntity<Map<String, Alumno>>(
-            Alumnos, HttpStatus.OK);
+            alumnos, HttpStatus.OK);
 
     }
 
@@ -60,7 +60,7 @@ public class AlumnoController {
 
         String id = UUID.randomUUID().toString();
         p.setId(id);
-        Alumnos.put(id, p);
+        alumnos.put(id, p);
         
         return new ResponseEntity<String>(id,
              HttpStatus.CREATED);
@@ -70,8 +70,8 @@ public class AlumnoController {
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Alumno> find(@PathVariable String id){
-        if(Alumnos.containsKey(id)){
-            Alumno p = Alumnos.get(id);
+        if(alumnos.containsKey(id)){
+            Alumno p = alumnos.get(id);
             return new ResponseEntity<Alumno>(p, HttpStatus.OK);
         }else{
             return new ResponseEntity<Alumno>(HttpStatus.NOT_FOUND);

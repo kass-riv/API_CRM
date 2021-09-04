@@ -1,5 +1,12 @@
 package com.acme.api_crm.model;
 import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import lombok.*;
 
 @Getter
@@ -7,7 +14,11 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Entity
+@Table(name = "pAlumno")
+
 public class Alumno {
+@Id
 
     private String id;
     private String dni;
