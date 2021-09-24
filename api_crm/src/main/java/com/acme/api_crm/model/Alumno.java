@@ -29,6 +29,8 @@ public class Alumno {
     private String email;
     private String celular;
     private Date fechaCum;
+    public static void softDelete(Long id2) {
+    }
 
 
 }
