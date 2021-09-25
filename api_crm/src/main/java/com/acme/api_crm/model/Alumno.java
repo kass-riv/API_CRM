@@ -20,7 +20,7 @@ public class Alumno {
 @Id
 
     private String id;
-    private String dni;
+    private Integer dni;
     private String carrera;
     private String nombre;
     private String apellidos;
@@ -28,8 +28,7 @@ public class Alumno {
     private String email;
     private String celular;
     private Date fechaCum;
-    public static void softDelete(Long id2) {
-    }
+
 
 
 }

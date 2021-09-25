@@ -3,24 +3,21 @@ package com.acme.api_crm.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
-import org.springframework.web.bind.annotation.PutMapping;
+
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
 import com.acme.api_crm.model.Alumno;
+import com.acme.api_crm.repository.*;
 
-import org.springframework.dao.DataAccessException;
 import org.springframework.http.*;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 
 @RestController
 @RequestMapping(value = "api/Alumnos", produces ="application/json")
@@ -28,29 +25,15 @@ import org.springframework.validation.annotation.Validated;
 
 public class AlumnoController {
     private Map<String, Alumno> alumnos;
+     
+    private final AlumnoRepository alumnoData;
 
-    
 
 
+    public AlumnoController(AlumnoRepository alumnoData){
 
-    public AlumnoController(){
-
+        this.alumnoData = alumnoData;
         alumnos = new HashMap<String, Alumno>();
-
-        Alumno p = new Alumno();
-        p.setDni("71942525");
-        p.setNombre("nombre");
-        p.setApellidos("apellidos");
-        p.setSexo("mof");
-        p.setEmail("email@usmp.pe");
-        p.setCarrera("carrera");
-        p.setCelular("9999999999");
-        p.setFechaCum(new Date());
-
-        String id = UUID.randomUUID().toString();
-        p.setId(id);
-        alumnos.put(id,p);
-
 
     }
 
@@ -63,7 +46,10 @@ public class AlumnoController {
     }
 
     @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity <String> add(@RequestBody Alumno p){
+    public ResponseEntity <String> create(@RequestBody Alumno p){
+
+        alumnoData.save(p);
+        alumnoData.flush();
 
         String id = UUID.randomUUID().toString();
         p.setId(id);
@@ -85,32 +71,15 @@ public class AlumnoController {
             return new ResponseEntity<Alumno>(HttpStatus.NOT_FOUND);
         }
     } 
-
+    
+    
     @DeleteMapping("/alumnos/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id) {
+    public ResponseEntity<Alumno> delete(@PathVariable String id) {
         
-        Map<String, Object> response = new HashMap<>();
-        
-        try {           
-            Alumno.softDelete(id);
-        } catch (DataAccessException e) {
-            response.put("mensaje", "Error: Al momento de eliminar al alumno de la base de datos");
-            response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
-            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        
-        response.put("mensaje", "El alumno ha sido eliminado de la base de datos con éxito!");
-        
-        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+            alumnos.remove(id);            
+            return ResponseEntity.noContent().build();
+                            
     }
-
-
-
-
-
-
-
-
 
 
 }
