@@ -14,10 +14,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Set up JDK 1.8
+    - name: Set up JDK 11
       uses: actions/setup-java@v2
       with:
-        dsitribution: 'zulu'
+        distribution: 'zulu'
         java-version: '11'
     
     - name: Build with Maven Backend
@@ -40,37 +40,3 @@ jobs:
           docker_options: "--no-cache"
 
           process_type: web
-
-
-  build_webapp:
-    runs-on: ubuntu-latest
-    steps:
-
-    - name: Checkout
-      uses: actions/checkout@v2
-
-    - name: Set up JDK 1.8
-      uses: actions/setup-java@v1
-      with:
-        java-version: 1.8
-    
-    - name: Build with Maven Frontend
-      run: mvn -B package --file demomvc/pom.xml -DHEROKU_PSS_DB=${{ secrets.HEROKU_PSS_DB }} -DPORT=${{ secrets.PORT }}
-
-    - name: Build, Push and Release a Docker container to Heroku Frontend
-      uses: gonuit/heroku-docker-deploy@v1.3.2 
-      with:
-
-          email: ${{ secrets.HEROKU_EMAIL }}
-
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          
-          heroku_app_name: ${{ secrets.HEROKU_APP_NAME_FRONT }}
-
-          dockerfile_directory: ./demomvc
-
-          dockerfile_name: DockerFile
-
-          docker_options: "--no-cache"
-
-          process_type: web      
