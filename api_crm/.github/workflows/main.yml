@@ -1,0 +1,41 @@
+nombre: Java CI con Maven Deploy to heroku
+
+en:
+  empujar:
+    ramas: [ main ]
+  pull_request:
+    ramas: [ main ]
+
+trabajos:
+  build_webapi:
+    runs-on: ubuntu-latest
+    pasos:
+
+    - nombre: Checkout
+      usos: acciones/checkout@v2
+
+    - nombre: Configurar JDK 1.8
+      usos: actions/setup-java@v1
+      con:
+        java-versión: 1.8
+    
+    - nombre: Construir con Maven Backend
+      run: mvn -B package --file API_CRM/pom.xml -DskipTests
+
+    - nombre: Construir, empujar y liberar un contenedor docker a Heroku Backend
+      usos: gonuit/heroku-docker-deploy@v1.3.2
+      con:
+
+          correo electrónico: ${{ secretos. HEROKU_EMAIL }}
+
+          heroku_api_key: ${{ secretos. HEROKU_API_KEY }}
+          
+          heroku_app_name: ${{ secretos. HEROKU_APP_NAME }}
+
+          dockerfile_directory: ./API_CRM
+
+          dockerfile_name: DockerFile
+
+          docker_options:  "--no-cache" 
+
+          process_type: web
