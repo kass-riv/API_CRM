@@ -4,7 +4,7 @@
     th:replace="~{fragments/layout :: layout (~{::body},'proforma')}">
 
 <head>
-  <title>Producto</title>
+  <title>Carrera</title>
   <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
   <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css} " />
   <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
@@ -18,14 +18,14 @@
     <div class="row">
       <div class="col-lg-10 mt-5 mb-5">
         <h2>Carrito</h2><br/>
-        <a href="/pago/create" class="btn btn-primary">Pagar</a>
+        <a href="/pago/create" class="btn btn-primary">agregar</a>
         <table id="example" class="table table-bordered table-responsive" style="width: 100%">
           <thead>
             <tr>
               <th>Id</th>
               <th>Descripcion</th>
-              <th>Precio</th>
-              <th>Cantidad</th>
+              <th>precio</th>
+              <th>Creditos</th>
             </tr>
           </thead>
           <tbody>

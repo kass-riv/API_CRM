@@ -3,7 +3,7 @@
 <html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'producto')}">
 
 <head>
-  <title>Producto</title>
+  <title>Carrera</title>
   <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
   <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css} " />
   <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
@@ -16,14 +16,14 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-10 mt-5 mb-5">
-        <h2>Productos</h2><br/>
+        <h2>Carrera</h2><br/>
         <a href="/producto/create">Create</a>
         <table id="example" class="table table-bordered table-responsive" style="width: 100%">
           <thead>
             <tr>
               <th>#</th>
               <th>Descripcion</th>
-              <th>Precio</th>
+              <th>precio</th>
               <th>Image</th>
             </tr>
           </thead>
