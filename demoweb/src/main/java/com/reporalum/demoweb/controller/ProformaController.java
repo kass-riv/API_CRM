@@ -19,7 +19,6 @@ import java.util.List;
 
 @Controller
 public class ProformaController {
- 
     private static final String VIEW_INDEX ="proforma/index";
     private static String MODEL_PRODUCTO="proforma";
     private final ProformaRepository proformaData;
