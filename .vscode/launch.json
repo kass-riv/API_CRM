@@ -16,6 +16,16 @@
             "request": "launch",
             "mainClass": "com.acme.api_crm.ApiCrmApplication",
             "projectName": "api_crm"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-DemowebApplication<demoweb>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.reporalum.demoweb.DemowebApplication",
+            "projectName": "demoweb",
+            "args": ""
         }
     ]
 }

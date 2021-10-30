@@ -1,6 +1,8 @@
 package com.reporalum.demoweb.model;
 
-import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
+import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -16,21 +18,13 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "t_contact")
-
-public class Contacto {
-
+@Table(name = "t_order")
+public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-    @NotNull
-    private String name;
-    @NotNull
-    private String email;
-    @NotNull
-    private String phone; 
-    @NotNull
-    private String reason;
-    
-
+    private Integer id;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date orderDate; 
+    private Integer clienteId;
+    private BigDecimal montoTotal;
 }
