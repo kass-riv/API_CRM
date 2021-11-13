@@ -20,7 +20,7 @@ public class Alumno {
 @Id
 
     private String id;
-    private Integer dni;
+    private String dni;
     private String carrera;
     private String nombre;
     private String apellidos;

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 import com.acme.api_crm.model.Alumno;
@@ -62,11 +63,14 @@ public class AlumnoController {
 
 
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Alumno> find(@PathVariable String id){
-        if(alumnos.containsKey(id)){
-            Alumno p = alumnos.get(id);
-            return new ResponseEntity<Alumno>(p, HttpStatus.OK);
+    @GetMapping(value = "/{dni}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Alumno> findByNumber(@PathVariable String dni){
+        
+        Optional<Alumno> optionalAlumno = alumnoData.findByNumero(dni);
+
+        if(optionalAlumno.isPresent()){
+            Alumno alumno = optionalAlumno.get();
+            return new ResponseEntity<Alumno>(alumno, HttpStatus.OK);
         }else{
             return new ResponseEntity<Alumno>(HttpStatus.NOT_FOUND);
         }
