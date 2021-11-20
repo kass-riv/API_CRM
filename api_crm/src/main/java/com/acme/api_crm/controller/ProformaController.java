@@ -1,4 +1,4 @@
-package com.reporalum.demoweb.controller;
+package com.acme.api_crm.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,11 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.reporalum.demoweb.model.Producto;
-import com.reporalum.demoweb.model.Proforma;
-import com.reporalum.demoweb.model.Usuario;
+import com.acme.api_crm.model.Producto;
+import com.acme.api_crm.model.Proforma;
+import com.acme.api_crm.model.Usuario;
 
-import com.reporalum.demoweb.repository.ProformaRepository;
+import com.acme.api_crm.repository.ProformaRepository;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;

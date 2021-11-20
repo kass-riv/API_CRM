@@ -1,21 +1,30 @@
 package com.acme.api_crm.controller;
 
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.http.*;
+import java.util.List;
 
-@RestController
-@RequestMapping(value = "api/api_crm", produces="application/json")
+import com.acme.api_crm.model.Alumno;
+import com.acme.api_crm.repository.AlumnoRepository;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.Model;
+
+@Controller
 
 public class HomeController {
-    @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public ResponseEntity <String> saludo (@RequestParam String nombre){
+    private static final String HOME_INDEX ="welcome"; 
+    private static final String VIEW_DASHBOARD ="dashboard"; 
 
-        return new ResponseEntity<String>(
-            "saludo " + nombre, HttpStatus.OK);
 
+    @GetMapping("/")
+    public String index(Model model) {
+        return HOME_INDEX;
     }
+
+    @GetMapping("/dashboard")
+    public String dashboard(Model model) {
+        return VIEW_DASHBOARD;
+    }
+
 }
