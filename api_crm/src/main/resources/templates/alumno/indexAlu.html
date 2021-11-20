@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'alumno')}">
+
+<head>
+  <title>Carrera</title>
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css} " />
+  <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+  <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
+  <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mt-5 mb-5">
+        <h2>Alumnos</h2><br/>
+        <a href="/alumno/createAlu">Create</a>
+        <table id="example" class="table table-bordered table-responsive" style="width: 100%">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>NOMBRE</th>
+              <th>CARRERA</th>
+              <th>CELULAR</th>
+              <th>DNI</th>
+              <th>EMAIL</th> 
+              <th>NOMBRE </th>
+              <th>SEXO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="alumno : ${alumnos}">
+
+              <td th:text="${alumno.id}"></td>
+              <td th:text="${alumno.apellidos}"></td>
+              <td th:text="${alumno.carrera}"></td>
+              <td th:text="${alumno.celular}"></td>
+              <td th:text="${alumno.dni}"></td>
+              <td th:text="${alumno.email}"></td>
+              <td th:text="${alumno.nombre}"></td>
+              <td th:text="${alumno.sexo}"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+</html>

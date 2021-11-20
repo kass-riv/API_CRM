@@ -21,8 +21,8 @@ function graficoPrincipal() {
 
         var options = {
           chart: {
-            width: 600,
-            height: 400,
+            width: 1000,
+            height: 5000,
             title: 'Reporte de  Ventas',
             legend: { position: 'top'}
           }
@@ -37,3 +37,4 @@ function graficoPrincipal() {
         console.log(text + ' - ' + err);
       });
 }
+

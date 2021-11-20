@@ -75,15 +75,7 @@ public class AlumnoController {
             return new ResponseEntity<Alumno>(HttpStatus.NOT_FOUND);
         }
     } 
-    
-    
-    @DeleteMapping("/alumnos/{id}")
-    public ResponseEntity<Alumno> delete(@PathVariable String id) {
-        
-            alumnos.remove(id);            
-            return ResponseEntity.noContent().build();
-                            
-    }
+
 
 
 }
