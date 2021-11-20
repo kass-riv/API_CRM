@@ -23,7 +23,7 @@ public class DashboardController {
 
     @GetMapping(value = "/pedidostotales", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Map<String, Object>>> productos(){
-        return  new ResponseEntity<List<Map<String, Object>>>(
+        return new ResponseEntity<List<Map<String, Object>>>(
             pedidosData.querySumaTotal(), HttpStatus.OK);
     }
 
